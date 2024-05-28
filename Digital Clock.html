@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>digital clock</title>
+    <style>
+      body {
+        background-color: #000000;
+        height:min-content;
+      }
+      .container{
+        height:fit-content;
+        display:flex;
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
+        /* border: 2px solid red; */
+       
+       
+      }
+      .dateTime {
+        box-shadow:
+        20px 0px 20px rgb(84, 8, 8,0.6),
+        -20px 0px 20px rgb(84, 8, 8,0.6),
+        20px -20px 20px rgb(84, 8, 8,0.6),
+        -20px -20px 20px rgb(84, 8, 8,0.6);
+        -webkit-box-reflect: below 0 linear-gradient(transparent, white) ;
+        margin-bottom: 80px;
+        height: auto;
+        width: auto;
+        margin-top: 10px;
+        margin-bottom: 150px;
+        background-color: rgb(144, 4, 4);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
+        color: #ffffff;
+        border-radius: 10px;
+      }
+      #date {
+        font-style: oblique;
+        font-size: 25px;
+        margin: 15px;
+        margin-bottom: 2px;
+      }
+      #time {
+        font-size: 60px;
+        font-weight: bold;
+        margin: 20px;
+        margin-bottom: 5px;
+        margin-top: 2px;
+      }
+     .heading{
+        h6{margin:5px}
+        font-size: 40px;
+        align-items: end;
+        color:white;
+        display: flex;
+        text-align: center;
+        /* border:2px solid white; */
+        flex-direction: column;
+     }
+    
+    </style>
+  </head>
+  <body>
+    <div class="container">
+        <div class="heading"><h1 >DIGITAL CLOCK</h1>
+        <h6> HTML, CSS & JS</h6></div>
+      <div class="dateTime">
+        <h id="date">date</h>
+        <h id="time">time</h>
+      </div>
+    </div>
+    <script>
+      function displayDate() {
+        let dateobj = new Date();
+        let date = dateobj.getDate();
+        let day = dateobj.getDay();
+        let month = dateobj.getMonth();
+        let year = dateobj.getFullYear();
+        let dayname = [
+          "Sunday",
+          "Monday",
+          "Tuesday",
+          "Wednesday",
+          "Thursday",
+          "Friday",
+          "Saturday",
+        ];
+        let monthName = [
+          "January",
+          "February",
+          "March",
+          "April",
+          "May",
+          "June",
+          "July",
+          "August",
+          "September",
+          "October",
+          "November",
+          "December",
+        ];
+        let dayDate =
+          dayname[day] + ", " + monthName[month] + " " + date + ", " + year;
+        document.getElementById("date").innerHTML = dayDate;
+      }
+
+      setInterval(displayTime, 1000);
+      function displayTime() {
+        displayDate();
+        let time = new Date();
+        let hour = time.getHours();
+        let min = time.getMinutes();
+        let sec = time.getSeconds();
+        let period = "AM";
+
+        if (hour >= 12) {
+          if (hour > 12) hour -= 12;
+          am_pm = "PM";
+        } else if (hour == 0) {
+          hr = 12;
+          period = "AM";
+        }
+
+        hour = hour < 10 ? "0" + hour : hour;
+        min = min < 10 ? "0" + min : min;
+        sec = sec < 10 ? "0" + sec : sec;
+
+        let currentTime = hour + ":" + min + ":" + sec + " " + period;
+
+        document.getElementById("time").innerHTML = currentTime;
+      }
+
+      showTime();
+    </script>
+  </body>
+</html>
